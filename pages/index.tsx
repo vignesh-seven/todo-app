@@ -8,6 +8,11 @@ import TodoEntry from '../components/TodoEntry'
 import { useRef, useState } from 'react';
 // import styles from '@/styles/Home.module.css'
 
+interface Task {
+  taskName: string,
+  done: boolean
+}
+
 const inter = Inter({ subsets: ['latin'] })
 
 const useStyle = createStyles(() => ({
@@ -31,10 +36,19 @@ export default function Home() {
   //   "welcome"
   // ]
 
-  const [tasks, setTasks] = useState<string[]>([
-    "hello",
-    "there",
-    "welcome"
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      taskName: "hello",
+      done: false
+    },
+    {
+      taskName: "there",
+      done: false
+    },
+    {
+      taskName: "welcome",
+      done: false
+    },
   ])
 
   const form = useForm({
@@ -55,7 +69,10 @@ export default function Home() {
 
     setTasks([
       ...tasks,
-      newTaskName
+      {
+        taskName: newTaskName,
+        done: false
+      }
     ])
 
     // newTaskRef.current.value = ""
@@ -66,17 +83,25 @@ export default function Home() {
     setTasks(tasks.filter((task, i, array) => {
       return i !== taskIndex
     }))
-
-
-    // let newTasks = tasks.filter((task) => {
-    //   return task !== taskName
-    // })
-
-    // console.log(newTasks)
-
   }
 
+  function toggleTask(task: Task) {
+    // function toggleTask(task: any) {
+    setTasks([
+      ...tasks,
+      {
+        taskName: task.taskName,
+        done: !task.done
+      }
+    ])
+    // }
+  }
 
+  // let newTasks = tasks.filter((task) => {
+  //   return task !== taskName
+  // })
+
+  // console.log(newTasks)
 
 
   return (
@@ -92,7 +117,7 @@ export default function Home() {
 
           {
             tasks.map((task, i) => (
-              <TodoEntry taskName={task} key={i} index={i} removeTask={removeTask} />
+              <TodoEntry task={task} key={i} index={i} toggleTask={toggleTask} />
             ))
           }
 
@@ -106,7 +131,7 @@ export default function Home() {
                   variant="filled"
                   radius="xs"
                   size="lg"
-                  // className={classes.flexGrow}
+                // className={classes.flexGrow}
                 />
               </Grid.Col>
 
