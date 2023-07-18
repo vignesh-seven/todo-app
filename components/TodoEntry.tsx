@@ -1,9 +1,6 @@
 import { Checkbox, CloseButton, Text, Grid } from "@mantine/core";
-import { useState } from "react";
 
 export default function TodoEntry({ task, index, toggleTask }: any) {
-
-  const [checked, setChecked] = useState(false);
 
   return (
     <Grid>
