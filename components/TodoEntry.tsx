@@ -1,14 +1,7 @@
-import { Checkbox, CloseButton, Text, Grid, createStyles } from "@mantine/core";
+import { Checkbox, CloseButton, Text, Grid } from "@mantine/core";
 import { useState } from "react";
 
-const useStyle = createStyles(() => ({
-  entry: {
-    display: "flex",
-  },
-}));
-
 export default function TodoEntry({ task, index, toggleTask }: any) {
-  const { classes } = useStyle();
 
   const [checked, setChecked] = useState(false);
 
@@ -18,7 +11,7 @@ export default function TodoEntry({ task, index, toggleTask }: any) {
         <Checkbox
           label={
             <>
-              <Text strikethrough={checked} size="xl">
+              <Text strikethrough={task.done} size="xl">
                 {task.taskName}
               </Text>
             </>
