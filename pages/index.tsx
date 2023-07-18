@@ -6,6 +6,7 @@ import {
   Divider,
   TextInput,
   Grid,
+  Flex,
   createStyles,
   rem,
 } from "@mantine/core";
@@ -116,16 +117,25 @@ export default function Home() {
       </Head>
       <main>
         <Paper p="md" className={classes.wrapper}>
-          {tasks.map((task, i) => (
-            <TodoEntry
-              task={task}
-              key={i}
-              index={i}
-              toggleTask={toggleTask}
-              removeTask={removeTask}
-            />
-          ))}
-
+          <Flex
+            mih={50}
+            // bg="rgba(0, 0, 0, .3)"
+            gap="xs"
+            justify="center"
+            // align="center"
+            direction="column"
+            wrap="wrap"
+          >
+            {tasks.map((task, i) => (
+              <TodoEntry
+                task={task}
+                key={i}
+                index={i}
+                toggleTask={toggleTask}
+                removeTask={removeTask}
+              />
+            ))}
+          </Flex>
           <Divider my="lg" />
           <form onSubmit={form.onSubmit((e) => addTask(e.taskName))}>
             <Grid>
