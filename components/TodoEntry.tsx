@@ -20,7 +20,7 @@ export default function TodoEntry({
           radius="lg"
           size="lg"
           checked={task.done}
-          onChange={(event) => toggleTask(task)}
+          onChange={(event) => toggleTask(index)}
         />
       </Grid.Col>
 

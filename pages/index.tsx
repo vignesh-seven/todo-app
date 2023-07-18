@@ -89,11 +89,11 @@ export default function Home() {
     );
   }
 
-  function toggleTask(task: Task) {
+  function toggleTask(taskIndex: number) {
     // function toggleTask(task: any) {
-    const new_tasks = tasks.map((obj) => {
-      if (obj.taskName == task.taskName) {
-        obj.done = !task.done;
+    const new_tasks = tasks.map((obj, i) => {
+      if (i == taskIndex) {
+        obj.done = !tasks[taskIndex].done;
       }
       return obj;
     });
