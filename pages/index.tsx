@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { Text, Paper, Button, Divider, TextInput, Grid, createStyles, rem } from '@mantine/core';
+import { Paper, Button, Divider, TextInput, Grid, createStyles, rem } from '@mantine/core';
 import { useForm } from '@mantine/form'
 
 import TodoEntry from '../components/TodoEntry'
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 // import styles from '@/styles/Home.module.css'
 
 interface Task {
@@ -87,15 +86,16 @@ export default function Home() {
 
   function toggleTask(task: Task) {
     // function toggleTask(task: any) {
-    setTasks([
-      ...tasks,
-      {
-        taskName: task.taskName,
-        done: !task.done
+    const new_tasks = tasks.map(obj => {
+
+      if (obj.taskName == task.taskName) {
+        obj.done = !task.done;
       }
-    ])
-    // }
+      return obj;
+    })
+    setTasks(new_tasks)
   }
+
 
   // let newTasks = tasks.filter((task) => {
   //   return task !== taskName
