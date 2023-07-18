@@ -1,7 +1,11 @@
 import { Checkbox, CloseButton, Text, Grid } from "@mantine/core";
 
-export default function TodoEntry({ task, index, toggleTask }: any) {
-
+export default function TodoEntry({
+  task,
+  index,
+  toggleTask,
+  removeTask,
+}: any) {
   return (
     <Grid>
       <Grid.Col span="auto">
@@ -21,7 +25,14 @@ export default function TodoEntry({ task, index, toggleTask }: any) {
       </Grid.Col>
 
       <Grid.Col span="content">
-        <CloseButton title="Delete task" size="xl" iconSize={20} />
+        <CloseButton
+          onClick={(e) => {
+            removeTask(index);
+          }}
+          title="Delete task"
+          size="xl"
+          iconSize={20}
+        />
       </Grid.Col>
     </Grid>
   );
